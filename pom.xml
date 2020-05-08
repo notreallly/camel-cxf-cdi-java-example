@@ -16,8 +16,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- the version of the BOM, defining all the dependency versions -->
-		<fuse.version>6.2.1.redhat-084</fuse.version>
-		<fabric8.version>2.2.0.redhat-079</fabric8.version>
+		<fuse.version>6.3.0.redhat-446</fuse.version>
+		<fabric8.version>2.2.170.redhat-000032</fabric8.version>
 		<docker.maven.plugin.version>0.13.6</docker.maven.plugin.version>
 
 		<!-- Docker & Fabric8 Configs -->
@@ -34,14 +34,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- fabric8 bom must be before fabric8 bom -->
-			<dependency>
-				<groupId>io.fabric8</groupId>
-				<artifactId>fabric8-project-bom-with-platform-deps</artifactId>
-				<version>${fabric8.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 			<dependency>
 				<groupId>org.jboss.fuse.bom</groupId>
 				<artifactId>jboss-fuse-parent</artifactId>
@@ -78,6 +70,11 @@
 			<groupId>io.fabric8.mq</groupId>
 			<artifactId>camel-amq</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>io.fabric8.mq</groupId>
+			<artifactId>camel-amq</artifactId>
+		</dependency>
 
 		<!-- cdi api -->
 		<dependency>
@@ -90,7 +87,7 @@
 		<dependency>
 			<groupId>io.fabric8</groupId>
 			<artifactId>fabric8-cdi</artifactId>
-			<version>${fabric8.version}</version>
+			<version>3.0.11.fuse-760025-redhat-00001</version>
 		</dependency>
 
 		<!-- need to use a CDI container such as JBoss Weld -->
@@ -102,10 +99,12 @@
 		<dependency>
 			<groupId>org.jboss.weld</groupId>
 			<artifactId>weld-core</artifactId>
+			<version>2.4.1.Final-redhat-1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.deltaspike.cdictrl</groupId>
 			<artifactId>deltaspike-cdictrl-weld</artifactId>
+			<version>1.9.3</version>
 		</dependency>
 
 		<dependency>
@@ -131,6 +130,7 @@
 		<dependency>
 			<groupId>io.fabric8</groupId>
 			<artifactId>fabric8-arquillian</artifactId>
+			<version>3.0.11.fuse-760025-redhat-00001</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -175,11 +175,11 @@
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>fabric8-maven-plugin</artifactId>
-				<version>${fabric8.version}</version>
+				<version>2.2.170</version>
 				<executions>
 					<execution>
 						<id>json</id>
-						<phase>generate-resources</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>json</goal>
 						</goals>
